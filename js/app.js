@@ -64,6 +64,12 @@ function table_create_5x5() {
 
 function p_iterate_change() {
     console.log('- Enunciado: Iterar los párrafos y modificar el contenido con la propiedad textContent.');
+
+    let parrafos = document.querySelectorAll('p');
+
+    for( let contenido of parrafos ) {
+        contenido.textContent = '¡¡Párrafo modificado!! -- ' + contenido.textContent;
+    }
 }
 
 function link_change_href() {
