@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333;
+    background-color: #eee;
+}
+
+h2 {
+    margin: 3px;
+    text-align: center;
+}
+
+.display-none {
+    display: none;
+}
+
+.panel.panel_hidden .panel_content {
+    display: none;
+}
+
+.panel.derecha.panel_hidden .panel_ocultar {
+    transform: rotate(180deg);
+}
+
+.panel.abajo.panel_hidden .panel_ocultar::after {
+    transform: rotate(270deg);
+}
+
+.panel .panel_ocultar {
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+    transition: background-color 0.350s ease-out;
+}
+
+.panel .panel_ocultar:hover {
+    background-color: rgb(234, 166, 158);
+}
+
+.panel .panel_ocultar::after {
+    color: #666;
+}
+
+.panel.derecha {
+    min-width: 200px;
+}
+
+.panel.derecha ul {
+    margin: 1rem 0;
+}
+
+.panel.derecha .panel_ocultar {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+}
+
+.panel.derecha .panel_ocultar::after {
+    position: fixed;
+    content: '\276F';
+    display: inline-block;
+    top: 49%;
+    padding-left: 5px;
+}
+
+.panel.derecha .panel_content>* {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.panel.derecha .panel_content ul {
+    padding: 0;
+}
+
+.panel.derecha .panel_content ul li {
+    padding: 10px;
+}
+
+
+.panel.abajo {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.panel.abajo .panel_ocultar {
+    position: relative;
+    vertical-align: middle;
+    padding-left: 2px;
+}
+
+.panel.abajo .panel_ocultar::after {
+    left: 50%;
+    content: '\276F';
+    display: inline-block;
+    transform: rotate(90deg);
+    top: -2px;
+    position: absolute;
+}
+
+.panel.abajo .panel_content {
+    margin: 0;
+    padding: 0;
+}
+
+.panel .panel_content #console_log {
+    overflow: auto;
+    height: 220px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.panel .panel_content #console_log li {
+    padding: 5px;
+    margin: 0;
+    cursor: default;
+}
+
+.panel .panel_content #console_log li:hover {
+    background-color: rgb(234, 166, 158) !important;
+}
+
+.panel .panel_content #console_log li span {
+    padding-right: 10px;
+}
+
+.panel .panel_content #console_log li pre {
+    text-align: left;
+    display: inline;
+    white-space: break-spaces;
+    margin: 0;
+}
+
+.panel .panel_content #console_log li:nth-child(even) {
+    background-color: white;
+}
+
+.panel ul {
+    padding: 0px;
+    list-style-type: none;
+}
+
+.panel li {
+    margin: 0px;
+    padding: 5px 7px;
+    cursor: pointer;
+    transition: background-color 0.350s ease-out;
+}
+
+.panel li:hover,
+.panel li.active {
+    background-color: rgb(234, 166, 158);
+}
+
+.panel a:hover {
+    text-decoration: none;
+}
