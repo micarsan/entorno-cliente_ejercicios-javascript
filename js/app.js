@@ -2,9 +2,30 @@
  * innerHTML, outerHTML o textContent
  */
 
-
 function lista_add_links() {
-    console.log('- Enunciado: Seleccionar la lista y añadir nuevo enlaces utilizando una vez solo el innerHTML (Seleccionar con querySelector).');
+    
+    let log = '- Enunciado: Seleccionar la lista y añadir nuevos elementos utilizando una vez solo el innerHTML (Seleccionar con querySelector).';
+
+    // Seleccionamos la lista ordenada
+    let ol = document.querySelectorAll('ol')[0];
+
+    //contamos los elementos que ya hay
+    let cantidad_elementos = ol.getElementsByTagName('li').length + 1;
+
+    let nuevos_elementos = 3; // cantidad de elementos a añadir
+    let contenido = ''; // variable con el contenido a añadir
+
+    // Añadimos los elementos
+    for ( let i=cantidad_elementos ; i < cantidad_elementos+nuevos_elementos ; i++ ) {
+        log += '\n-Añadiendo a la lista: object ' + i;
+        contenido += '<li>object ' + i + '</li>';
+        list_add_elements_typed[i] = true;
+    }
+
+    console.log(log);
+
+    // Añadimos el contenido
+    ol.innerHTML += contenido;
 }
 
 function table_create_5x5() {
