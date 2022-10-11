@@ -19,7 +19,6 @@ function lista_add_links() {
     for ( let i=cantidad_elementos ; i < cantidad_elementos+nuevos_elementos ; i++ ) {
         log += '\n-Añadiendo a la lista: object ' + i;
         contenido += '<li>object ' + i + '</li>';
-        list_add_elements_typed[i] = true;
     }
 
     console.log(log);
@@ -30,6 +29,8 @@ function lista_add_links() {
 
 function table_create_5x5() {
     console.log('- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).');
+
+    
 }
 
 function p_iterate_change() {
