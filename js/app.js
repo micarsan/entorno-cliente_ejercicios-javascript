@@ -30,7 +30,36 @@ function lista_add_links() {
 function table_create_5x5() {
     console.log('- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).');
 
+    let content = '<div><table id="table_5x5">';
+
+    // generamos las filas
+    for( let i=1 ; i <= 5 ; i++ ) {
+        
+        content += '<tr>';
+
+        // generamos las celdas de cada fila (columnas)
+        for( let j=1 ; j <= 5 ; j++ ) {
+            content += '<td>celda '+i+'x'+j+'</td>';
+        }
+
+        content += '</tr>';
+    }
     
+    content += '</table></div>';
+
+    // Añadimos al final de body
+    document.body.innerHTML += content;
+
+    // Aplicamos estilos (añadir borde y padding)
+    let table = document.getElementById('table_5x5');
+    let celdas = table.getElementsByTagName('td');
+    
+    for( let celda of celdas ) {
+        celda.style.border = '1px solid grey';
+        celda.style.padding = '4px';
+    }
+    
+    table.style.borderCollapse = 'collapse';
 }
 
 function p_iterate_change() {
