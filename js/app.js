@@ -27,10 +27,12 @@ function lista_add_links() {
     ol.innerHTML += contenido;
 }
 
-function table_create_5x5() {
-    console.log('- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).');
 
-    let content = '<div><table id="table_5x5">';
+
+function table_create_5x5() {
+    log = '- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).\n';
+
+    let content = '<div class="div_table_5x5"><table>';
 
     // generamos las filas
     for( let i=1 ; i <= 5 ; i++ ) {
@@ -49,18 +51,30 @@ function table_create_5x5() {
 
     // Añadimos al final de body
     document.body.innerHTML += content;
+    log += '- Tabla insertada al final del contenido.\n';
 
     // Aplicamos estilos (añadir borde y padding)
-    let table = document.getElementById('table_5x5');
-    let celdas = table.getElementsByTagName('td');
     
-    for( let celda of celdas ) {
-        celda.style.border = '1px solid grey';
-        celda.style.padding = '4px';
+    let head_style = document.createElement('style');
+    // Creamos la etiqueta style si no existe en el head
+    if( !document.getElementsByTagName('style')[0] ) {
+        document.head.appendChild( head_style );
+        log += '- No existe la etiqueta style en head. Creada\n';
     }
     
-    table.style.borderCollapse = 'collapse';
+    //comprobamos si ya están los elementos
+    if( getComputedStyle( document.querySelector('.div_table_5x5') ).marginBottom == '10px' ) {
+        console.log(2);
+        log += '- Ya están los estilos creados! No se hace nada\n';
+    } else {
+        log += '- Añadiendo estilos para tabla 5x5\n';
+        head_style.textContent = '.div_table_5x5{ margin-bottom: 10px;} .div_table_5x5 table{ border-collapse: collapse; } .div_table_5x5 td{ border: 1px solid grey; padding: 4px; }';
+    }
+
+    console.log(log);
 }
+
+
 
 function p_iterate_change() {
     console.log('- Enunciado: Iterar los párrafos y modificar el contenido con la propiedad textContent.');
@@ -72,9 +86,22 @@ function p_iterate_change() {
     }
 }
 
+
+
 function link_change_href() {
-    console.log('- Enunciado: Los bordes deben de tener 3px solid con color rojo.');
+    log = '- Enunciado: Modificar todos los enlaces y poner el enlace a la página de cesur (o cualquiera).';
+
+    let enlaces = document.querySelectorAll('a');
+
+    for( let enlace of enlaces ) {
+        enlace.href='https://miguelcarmona.com';
+    }
+
+    console.log(log + '\nEnlaces cambiados a https://miguelcarmona.com');
+
 }
+
+
 
 function css_change() {
     console.log('- Enunciado: Duplicar el css con un color de fondo distinto del body, navegar por la cabecera y comprobar el atributo de link, si existe el atributo href, cambiar el enlace a la hoja de estilos duplicada.');
@@ -89,13 +116,19 @@ function p_new_append() {
     console.log('- Enunciado: Crear un nuevo elemento párrafo y añadirlo al div correspondiente (pista: appendChild).');
 }
 
+
+
 function botton_new_color_blind() {
     console.log('- Enunciado: Crear un nuevo elemento botón con un evento que nos permita al clicar, cambiar el color de todas las letras del body alternando entre azul y rojo.');
 }
 
+
+
 function div_p_duplicate() {
     console.log('- Enunciado: Clonar el div contenedor de los párrafos con sus contenidos y añadirlo al body.');
 }
+
+
 
 function div_p_delete_origin() {
     console.log('- Enunciado: Eliminar el párrafo original con la instrucción remove.');

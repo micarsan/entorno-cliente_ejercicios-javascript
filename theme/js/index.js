@@ -1,7 +1,7 @@
 // Mostrar / ocultar menu
 function hide_panel(id) {
     
-    document.body.classList.toggle('iframe_'+id+'_hidden');
+    document.body.classList.toggle(id+'_hidden');
     
     //Actualizamos la clase para que cambie la flecha del mostrar/ocultar panel
     window.frames['iframe_'+id+'_ocultar'].document.getElementsByClassName('panel')[0].classList.toggle('panel_hidden');
