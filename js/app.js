@@ -129,12 +129,21 @@ function css_change() {
 
 function p_new_append() {
     console.log('- Enunciado: Crear un nuevo elemento párrafo y añadirlo al div correspondiente (pista: appendChild).');
+
+    let parrafo = document.createElement('p');
+    parrafo.textContent = 'Nuevo párrafo creado.';
+    document.body.appendChild( parrafo );
 }
 
 
 
 function botton_new_color_blind() {
     console.log('- Enunciado: Crear un nuevo elemento botón con un evento que nos permita al clicar, cambiar el color de todas las letras del body alternando entre azul y rojo.');
+
+    let boton = document.createElement('button');
+    boton.setAttribute('onclick', '(document.body.style.color=="red") ? document.body.style.color="blue" : document.body.style.color="red"');
+    boton.textContent = 'Cambiar color de la letra';
+    document.body.appendChild( boton );
 }
 
 
