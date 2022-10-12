@@ -30,7 +30,7 @@ function lista_add_links() {
 
 
 function table_create_5x5() {
-    log = '- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).\n';
+    log = '- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).';
 
     let content = '<div class="div_table_5x5"><table>';
 
@@ -51,7 +51,7 @@ function table_create_5x5() {
 
     // Añadimos al final de body
     document.body.innerHTML += content;
-    log += '- Tabla insertada al final del contenido.\n';
+    log += '\n- Tabla insertada al final del contenido.';
 
     // Aplicamos estilos (añadir borde y padding)
     
@@ -59,15 +59,14 @@ function table_create_5x5() {
     // Creamos la etiqueta style si no existe en el head
     if( !document.getElementsByTagName('style')[0] ) {
         document.head.appendChild( head_style );
-        log += '- No existe la etiqueta style en head. Creada\n';
+        log += '\n- No existe la etiqueta style en head. Creada';
     }
     
     //comprobamos si ya están los elementos
     if( getComputedStyle( document.querySelector('.div_table_5x5') ).marginBottom == '10px' ) {
-        console.log(2);
-        log += '- Ya están los estilos creados! No se hace nada\n';
+        log += '\n- Ya están los estilos creados! No se hace nada';
     } else {
-        log += '- Añadiendo estilos para tabla 5x5\n';
+        log += '\n- Añadiendo estilos para tabla 5x5';
         head_style.textContent = '.div_table_5x5{ margin-bottom: 10px;} .div_table_5x5 table{ border-collapse: collapse; } .div_table_5x5 td{ border: 1px solid grey; padding: 4px; }';
     }
 
@@ -104,7 +103,23 @@ function link_change_href() {
 
 
 function css_change() {
-    console.log('- Enunciado: Duplicar el css con un color de fondo distinto del body, navegar por la cabecera y comprobar el atributo de link, si existe el atributo href, cambiar el enlace a la hoja de estilos duplicada.');
+    log = '- Enunciado: Duplicar el css con un color de fondo distinto del body, navegar por la cabecera y comprobar el atributo de link, si existe el atributo href, cambiar el enlace a la hoja de estilos duplicada.';
+
+    let new_file_path = 'css/estilo_copy.css';
+
+    // Buscamos todos los elementos link en header y filtramos el que tenga un type "text/css" y un href
+    let links = document.head.getElementsByTagName('link');
+
+    for( let link of links  ) {
+        if( link.type == 'text/css' && link.href != '' ) {
+            log += '\n- Encontrado un enlace a la hoja de estilo '+link.href+'';
+            link.href = new_file_path;
+            log += '\n- Cambiado a: '+link.href;
+            break;
+        }
+    }
+    
+    console.log(log);
 }
 
 
