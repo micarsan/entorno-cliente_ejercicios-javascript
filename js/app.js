@@ -70,6 +70,9 @@ function table_create_5x5() {
         head_style.textContent = '.div_table_5x5{ margin-bottom: 10px;} .div_table_5x5 table{ border-collapse: collapse; } .div_table_5x5 td{ border: 1px solid grey; padding: 4px; }';
     }
 
+    // Hacemos scrool para que se vea el nuevo contenido
+    scroll_to('down');
+
     console.log(log);
 }
 
@@ -130,9 +133,16 @@ function css_change() {
 function p_new_append() {
     console.log('- Enunciado: Crear un nuevo elemento párrafo y añadirlo al div correspondiente (pista: appendChild).');
 
+    // Buscamos el div del primer párrafo
+    let div = document.querySelector('div>p').parentElement;
+
     let paragraph = document.createElement('p');
     paragraph.textContent = 'Nuevo párrafo creado.';
-    document.body.appendChild( paragraph );
+    div.appendChild( paragraph );
+
+    // Hacemos scrool arriba para que se vea el nuevo contenido
+    scroll_to('up');
+
 }
 
 
@@ -144,6 +154,10 @@ function botton_new_color_blind() {
     button_element.setAttribute('onclick', '(document.body.style.color=="red") ? document.body.style.color="blue" : document.body.style.color="red"');
     button_element.textContent = 'Cambiar color de la letra';
     document.body.appendChild( button_element );
+
+    // Hacemos scrool abajo para que se vea el nuevo contenido
+    scroll_to('down');
+
 }
 
 
@@ -166,6 +180,9 @@ function div_p_duplicate() {
         }
         last_div = div; 
     }
+
+    // Hacemos scrool abajo para que se vea el nuevo contenido
+    scroll_to('down');
 
 }
 
@@ -223,5 +240,31 @@ function div_p_delete_origin() {
     log += '\n- Se han eliminado '+ deleted.length + ' contenedores div de párrafos.';
     console.log( log );
 
+    // Hacemos scrool arriba para que se vea que se ha eliminado
+    scroll_to('up');
+
 }
 
+
+
+/**
+ * Funcionalidad (funciones adicionales)
+ */
+
+// Hace scrool de página hasta el principio, final o una posición determinada (útil para mostrar nuevo contenido cuando se añade)
+function scroll_to(direction) {
+
+    let position = 0;
+    if( direction === 'up' ) {
+        position = 0;
+    } else if( direction === 'down' ) {
+        position = document.body.scrollHeight;
+    } else if( Number.isInteger(direction) ) {
+        position = Number(direction);
+    }
+    
+    window.scroll({
+        top: position,
+        behavior: 'smooth'
+    });
+}
