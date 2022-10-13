@@ -18,6 +18,8 @@ h3 { text-align: center; }
 .display-none {
     display: none;
 }
+.font-08 { font-size: 0.8em; }
+.font-09 { font-size: 0.9em; }
 
 .panel.panel_hidden .panel_content {
     display: none;

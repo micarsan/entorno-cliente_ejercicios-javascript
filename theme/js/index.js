@@ -20,9 +20,9 @@ function fix_size() {
     window_height = window.innerHeight;
 
     if( window.frames['iframe_console_ocultar'].document.getElementsByClassName('panel')[0].classList.contains('panel_hidden') ) {
-        window_height = window_height - 18;
+        window_height = window_height - 23;
     } else {
-        window_height = window_height - 248;
+        window_height = window_height - 253;
     }
     
     document.getElementById('div_content').style.height = window_height + 'px';
