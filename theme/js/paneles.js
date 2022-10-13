@@ -18,16 +18,6 @@ function ejecutar_todo() {
             //tiempo por defecto entre ejecuciones
             let time_wait=1000;
             
-            // Modificamos el tiempo según función
-            switch( funcion ) {
-                case 'list_iterate':
-                    time_wait = 2500;
-                    break;
-                case 'list_add_elements':
-                    time_wait = 2000;
-                    break;
-            }
-            
             // Lanzamos cuando le corresponda (1 segundo de diferencia)
             setTimeout(function a(){
                 item.classList.add('active');
