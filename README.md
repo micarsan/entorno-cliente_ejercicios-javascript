@@ -16,9 +16,9 @@
 
 ## Detalles
 
-* Theme actualizado para funcionar con iframes en vez de modificar el documento principal.
-* Hecha completamente en HTML, CSS y JS con una única librería adicional para efecto "máquina de escribir" [https://github.com/mattboldt/typed.js](https://github.com/mattboldt/typed.js).
-* Se ha hecho interactivo para comprobar punto a punto el efecto visual
+* Theme actualizado para funcionar con iframes en vez de modificar el documento principal. Al trabajar con iframes, tendrá que acceder a la página a través de un servidor web ya que por medidas de seguridad, los principales navegadores no permiten acceder a las propiedades entre iframes abriendo el archivo localmente.
+* Hecha completamente en HTML, CSS y JS sin ninguna librería externa.
+* Se ha hecho interactivo para comprobar punto a punto los cambios.
 
 ## Demo
 [https://daw.miguelcarmona.com/entorno-cliente_ejercicios-javascript-2/](https://daw.miguelcarmona.com/entorno-cliente_ejercicios-javascript-2/)
