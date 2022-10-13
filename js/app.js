@@ -190,7 +190,7 @@ function div_p_delete_origin() {
         last_div = div; 
     }
 
-    log += '\n- Hay '+ divs.length + ' contenedores de párrafos. Buscamos duplicados.';
+    log += '\n- Hay '+ divs.length + ' contenedores div de párrafos. Buscamos duplicados.';
 
     let deleted = []; // Array para guardar los índices de los elementos eliminados
 
@@ -220,7 +220,7 @@ function div_p_delete_origin() {
         }
     }
 
-    log += '\n- Se han eliminado '+ deleted.length + ' contenedores de párrafos.';
+    log += '\n- Se han eliminado '+ deleted.length + ' contenedores div de párrafos.';
     console.log( log );
 
 }
