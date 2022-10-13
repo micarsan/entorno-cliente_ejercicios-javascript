@@ -1,3 +1,5 @@
+var window_height; //guarda el alto de la ventana
+
 // Mostrar / ocultar menu
 function hide_panel(id) {
     
@@ -15,19 +17,20 @@ function hide_panel(id) {
 
 // Ajusta el alto de los elementos grid según el tamaño de ventana
 function fix_size() {
-    let height = window.innerHeight;
+    window_height = window.innerHeight;
 
     if( window.frames['iframe_console_ocultar'].document.getElementsByClassName('panel')[0].classList.contains('panel_hidden') ) {
-        height = height - 18;
+        window_height = window_height - 18;
     } else {
-        height = height - 248;
+        window_height = window_height - 248;
     }
     
-    document.getElementById('div_content').style.height = height + 'px';
+    document.getElementById('div_content').style.height = window_height + 'px';
 }
 
 window.addEventListener("load", fix_size);
 window.addEventListener("resize", fix_size);
+
 
 // injectamos una función para sobreescribir console.log en el iframe content
 window.frames['iframe_content'].addEventListener("load", function() {
@@ -66,3 +69,23 @@ window.frames['iframe_content'].addEventListener("load", function() {
 
 });
 
+// Hace scrool de página hasta el principio, final o una posición determinada (útil para mostrar nuevo contenido cuando se añade)
+function scroll_to(frame, direction) {
+
+    let position = 0;
+    if( direction === 'up' | direction === 'top' ) {
+        position = 0;
+    } else if( direction === 'down' ) {
+        position = document.body.scrollHeight;
+    } else if( Number.isInteger(direction) ) { //si es una posición
+        position = Number(direction);
+    } else if( direction.nodeType ) { // si es un elemento nodo
+        direction.scrollIntoView(true);
+        return true;
+    }
+    
+    window.top.frames[frame].window.scroll({
+        top: position,
+        behavior: 'smooth'
+    });
+}

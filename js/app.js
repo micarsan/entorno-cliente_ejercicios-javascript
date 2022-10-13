@@ -32,33 +32,40 @@ function lista_add_links() {
 function table_create_5x5() {
     log = '- Enunciado: Generar una tabla de 5x5 con la utilización de estructuras iterativas y añadirle un borde (Podéis crear un div nuevo y vacío para realizarlo).';
 
-    let content = '<div class="div_table_5x5"><table>';
+    let div = document.createElement('div');
+    div.classList.add('div_table_5x5');
+    let table = document.createElement('table');
 
     // generamos las filas
     for( let i=1 ; i <= 5 ; i++ ) {
         
-        content += '<tr>';
+        let tr = document.createElement('tr');
 
-        // generamos las celdas de cada fila (columnas)
+        // generamos las celdas de cada fila
         for( let j=1 ; j <= 5 ; j++ ) {
-            content += '<td>celda '+i+'x'+j+'</td>';
+            let td = document.createElement('td');
+            td.textContent = 'celda '+i+'x'+j;
+            tr.appendChild(td);
         }
 
-        content += '</tr>';
-    }
-    
-    content += '</table></div>';
+        // Añadimos la línea a la tabla
+        table.appendChild(tr);
 
+    }
+
+    // Añadimos la tabla al contenedor div
+    div.appendChild(table);
+
+    
     // Añadimos al final de body
-    document.body.innerHTML += content;
+    document.body.appendChild(div);
     log += '\n- Tabla insertada al final del contenido.';
 
     // Aplicamos estilos (añadir borde y padding)
     
-    let head_style = document.createElement('style');
     // Creamos la etiqueta style si no existe en el head
     if( !document.getElementsByTagName('style')[0] ) {
-        document.head.appendChild( head_style );
+        document.head.appendChild( document.createElement('style') );
         log += '\n- No existe la etiqueta style en head. Creada';
     }
     
@@ -67,12 +74,12 @@ function table_create_5x5() {
         log += '\n- Ya están los estilos creados! No se hace nada';
     } else {
         log += '\n- Añadiendo estilos para tabla 5x5';
-        head_style.textContent = '.div_table_5x5{ margin-bottom: 10px;} .div_table_5x5 table{ border-collapse: collapse; } .div_table_5x5 td{ border: 1px solid grey; padding: 4px; }';
+        document.getElementsByTagName('style')[0].textContent += '.div_table_5x5{ margin-bottom: 10px;} .div_table_5x5 table{ border-collapse: collapse; } .div_table_5x5 td{ border: 1px solid grey; padding: 4px; }';
     }
 
-    // Hacemos scrool para que se vea el nuevo contenido
-    scroll_to('down');
-
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ div.scrollIntoView(true); }, 10);
+    
     console.log(log);
 }
 
@@ -86,6 +93,10 @@ function p_iterate_change() {
     for( let paragraph of paragraphs ) {
         paragraph.textContent = '¡¡Párrafo modificado!! -- ' + paragraph.textContent;
     }
+
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ paragraphs[0].scrollIntoView(true); }, 10);
+
 }
 
 
@@ -100,6 +111,9 @@ function link_change_href() {
     }
 
     console.log(log + '\nEnlaces cambiados a https://miguelcarmona.com');
+    
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ enlaces[0].scrollIntoView(true); }, 10);
 
 }
 
@@ -140,9 +154,8 @@ function p_new_append() {
     paragraph.textContent = 'Nuevo párrafo creado.';
     div.appendChild( paragraph );
 
-    // Hacemos scrool arriba para que se vea el nuevo contenido
-    scroll_to('up');
-
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ div.scrollIntoView(false); }, 10);
 }
 
 
@@ -155,8 +168,8 @@ function botton_new_color_blind() {
     button_element.textContent = 'Cambiar color de la letra';
     document.body.appendChild( button_element );
 
-    // Hacemos scrool abajo para que se vea el nuevo contenido
-    scroll_to('down');
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ button_element.scrollIntoView(true); }, 10);
 
 }
 
@@ -181,8 +194,8 @@ function div_p_duplicate() {
         last_div = div; 
     }
 
-    // Hacemos scrool abajo para que se vea el nuevo contenido
-    scroll_to('down');
+    // Hacemos scroll para que se vea el nuevo contenido (en 10ms)
+    setTimeout(function a(){ last_div.scrollIntoView(true); }, 10);
 
 }
 
@@ -242,7 +255,6 @@ function div_p_delete_origin() {
 
     // Hacemos scrool arriba para que se vea que se ha eliminado
     scroll_to('up');
-
 }
 
 
@@ -251,20 +263,18 @@ function div_p_delete_origin() {
  * Funcionalidad (funciones adicionales)
  */
 
-// Hace scrool de página hasta el principio, final o una posición determinada (útil para mostrar nuevo contenido cuando se añade)
+// llamamos a la función scrool_to de parent 
 function scroll_to(direction) {
-
-    let position = 0;
-    if( direction === 'up' ) {
-        position = 0;
-    } else if( direction === 'down' ) {
-        position = document.body.scrollHeight;
-    } else if( Number.isInteger(direction) ) {
-        position = Number(direction);
-    }
-    
-    window.scroll({
-        top: position,
-        behavior: 'smooth'
-    });
+    window.top.scroll_to('iframe_content', direction);
 }
+
+// Inyectamos css a su carga (para suavizar el movimiento de scroll)
+window.addEventListener("load", function(){
+    
+    // Creamos la etiqueta style si no existe en el head
+    if( !document.getElementsByTagName('style')[0] ) {
+        document.head.appendChild( document.createElement('style') );
+    }
+
+    document.getElementsByTagName('style')[0].textContent += 'html{ scroll-behavior: smooth; } \n';
+});

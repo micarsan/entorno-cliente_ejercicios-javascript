@@ -17,8 +17,14 @@ function ejecutar_todo() {
             
             //tiempo por defecto entre ejecuciones
             let time_wait=1000;
+
             
-            // Lanzamos cuando le corresponda (1 segundo de diferencia)
+            // Hacemos scrool (si se necesita) para mostrar el elemento 200ms antes de lanzarse
+            setTimeout(function a(){
+                item.scrollIntoView(false);
+            }, time - 200);
+            
+            // Resaltamos y lanzamos cuando le corresponda (1 segundo de diferencia)
             setTimeout(function a(){
                 item.classList.add('active');
                 window[funcion]();
@@ -29,11 +35,18 @@ function ejecutar_todo() {
                 item.classList.remove('active');
             }, time+time_wait);
         
+            // Subimos el menú a top el scroll 2 segundos después de lanzar en el último elemento
+            if( index === funciones.length-1 ) {
+                setTimeout(function a(){
+                    scroll_to('top');
+                }, time+2000);
+            }
+            
             //sumamos lo que corresponda
             time += time_wait;
-
         }
     });
+
 }
 
 function lista_add_links() {
@@ -64,3 +77,7 @@ function div_p_delete_origin() {
     window.top.frames['iframe_content'].div_p_delete_origin();
 }
 
+// Nos permite hacer scrool a una altura determinada
+function scroll_to(direction) {
+    window.top.scroll_to('iframe_menu', direction);
+ }
