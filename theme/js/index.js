@@ -25,7 +25,7 @@ function fix_size() {
         window_height = window_height - 253;
     }
     
-    document.getElementById('div_content').style.height = window_height + 'px';
+    document.getElementById('div_content').style.height = (window_height + 5) + 'px';
 }
 
 window.addEventListener("load", fix_size);
