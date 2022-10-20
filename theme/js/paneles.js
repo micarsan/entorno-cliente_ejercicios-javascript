@@ -1,3 +1,21 @@
+var ejercicio = 1;
+
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+
+
 /**
  *  Selector de ejercicios
  */
@@ -10,6 +28,9 @@ if( selector_ejercicios ) {
 
         // Cambiamos el src de iframe_content
         window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + this.value + '/index.html';
+
+        //Actualizamos la variable global ejercicio
+        ejercicio = this.value;
         
         //cambiamos la url principal
         window.top.history.pushState('page2', 'Title', window.top.location.pathname + '?ejercicio=' + this.value);
@@ -32,7 +53,13 @@ if( selector_ejercicios ) {
             
             let tmp = line.split('=');
             if( tmp[0] == 'ejercicio' | tmp[0] == '?ejercicio' ) {
+                
+                // Cambiamos iframe_content a la url correcta
                 window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + tmp[1] + '/index.html';
+                
+                // Actualizamos ejercicio
+                ejercicio = tmp[1];
+                
                 break;
             }
         }
@@ -40,7 +67,70 @@ if( selector_ejercicios ) {
 
     // Marcamos la opción adecuada
     select_option();
+
+
+    /**
+     * Creamos el menú
+     */
+
+    // Obtenemos los enunciados
+    getJSON('../ejercicio2/enunciados.json', function(err, data) {
+        if (err !== null) {
+        alert('Algo fue mal. Revisa la consola.');
+        console.log('Algo fue mal: ' + err);
+        } else {
+    
+        // Recorremos el json para montar el menú
+        let menu = document.getElementById('menu_elements');
+        let ul = document.createElement('ul');
+        for( let line of data.enunciados ) {
+
+            if( !line.function ) {
+                // Si no hay función, es una cabecera
+
+                // Si estamos en una lista con contenido, hay que insertarla y crearla de nuevo (limpiarla)
+                if( ul.hasChildNodes() ) {
+                    menu.appendChild(ul);
+                    ul = document.createElement('ul');
+                }
+
+                // Insertamos la cabecera
+                let cabecera = document.createElement('h3');
+                cabecera.innerText = line.title;
+                menu.appendChild( cabecera );
+            } else {
+                // Es un elemento
+
+                let li = document.createElement('li');
+                li.innerText = line.title;
+                
+                // Añadimos un atributo con el nombre de la función (para llamarlo luego al ejecutar todo)
+                li.setAttribute('data-function', line.function);
+//                li.setAttribute('onclick', 'window.top.document.getElementsByName(\'iframe_content\')[0].contentWindow[\'' + line.function + '\']()');
+                
+                // Si tiene un tiempo definido de ejecución, lo añadimos
+                if( !line.time ) {
+                    li.setAttribute('data-time', line.time);
+                }
+                ul.appendChild(li);
+
+                // Añadimos el lanzador para click
+                li.addEventListener("click", function() {
+                    window.top.document.getElementsByName('iframe_content')[0].contentWindow[line.function]();
+                });
+
+            }
+
+        }
+        menu.appendChild(ul);
+        
+        }
+    });
+ 
+
 }
+
+
 
 /**
  *  Selecciona en el selector de ejercicios el que se esté mostrando
@@ -64,6 +154,8 @@ function select_option() {
 }
 
 
+
+
 /**
  * Ejecuta todas las opciones del ejercicio secuencialmente
  */
@@ -78,11 +170,8 @@ function ejecutar_todo() {
         // Excluimos la primera opción (es esta misma)
         if (index > 0) {
             
-            // Obtenemos el valor de onclick para llamar a la función
-            let funcion = item.getAttribute('onclick');
-            
-            // Quitamos los 2 últimos caracteres ()
-            funcion = funcion.substring(0, funcion.length - 2);
+            // Obtenemos el valor de data-function para llamar a la función
+            let funcion = item.getAttribute('data-function');
             
             //tiempo por defecto entre ejecuciones
             let time_wait=1000;
@@ -96,7 +185,7 @@ function ejecutar_todo() {
             // Resaltamos y lanzamos cuando le corresponda (1 segundo de diferencia)
             setTimeout(function a(){
                 item.classList.add('active');
-                window[funcion]();
+                window.top.document.getElementsByName('iframe_content')[0].contentWindow[funcion]();
             }, time);
     
             // Quitamos el resalte de la actividad a los 950ms desde que se lanzó
@@ -116,34 +205,6 @@ function ejecutar_todo() {
         }
     });
 
-}
-
-function lista_add_links() {
-    window.top.frames['iframe_content'].lista_add_links();
-}
-function table_create_5x5() {
-    window.top.frames['iframe_content'].table_create_5x5();
-}
-function p_iterate_change() {
-    window.top.frames['iframe_content'].p_iterate_change();
-}
-function link_change_href() {
-    window.top.frames['iframe_content'].link_change_href();
-}
-function css_change() {
-    window.top.frames['iframe_content'].css_change();
-}
-function p_new_append() {
-    window.top.frames['iframe_content'].p_new_append();
-}
-function botton_new_color_blind() {
-    window.top.frames['iframe_content'].botton_new_color_blind();
-}
-function div_p_duplicate() {
-    window.top.frames['iframe_content'].div_p_duplicate();
-}
-function div_p_delete_origin() {
-    window.top.frames['iframe_content'].div_p_delete_origin();
 }
 
 // Nos permite hacer scrool a una altura determinada

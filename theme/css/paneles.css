@@ -15,7 +15,7 @@ h2 {
 }
 h3 { text-align: center; }
 
-.center { text-align: center; }
+.center { text-align: center;}
 
 .display-none {
     display: none;
@@ -95,8 +95,12 @@ h3 { text-align: center; }
     width: -moz-available;
     width: -webkit-fill-available;
 }
-.panel.derecha #panel_content .selector select option {
-    }
+
+
+#menu_elements {
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
 .panel.abajo {
     font-family: 'Courier New', Courier, monospace;

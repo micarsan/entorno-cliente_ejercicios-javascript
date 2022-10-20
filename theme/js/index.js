@@ -33,8 +33,8 @@ window.addEventListener("resize", fix_size);
 
 
 // injectamos una función para sobreescribir console.log en el iframe content
-window.frames['iframe_content'].addEventListener("load", function() {
-
+//window.frames['iframe_content'].addEventListener("load", function() {
+document.getElementsByName('iframe_content')[0].addEventListener("load", function() {
     
     window.frames['iframe_content'].window.console.log = function(message) {
         
@@ -47,22 +47,29 @@ window.frames['iframe_content'].addEventListener("load", function() {
     
         console.mytemp(message);
         
-        let scroll = window.top.frames['iframe_console'].document.querySelector('#console_log');
+        let console_log = window.top.frames['iframe_console'].window.document.querySelector('#console_log');
     
-        // Insertamos la hora
+        // Creamos los elementos e insertamos el log
         let date = new Date;
-    
-        // Insertamos el log
-        scroll.innerHTML += '<li><span class="date">'
-            + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '</span>'
-            + '<pre>' + message + '</pre></li>';
-    
-        //hacemos scrool hasta el final siempre
-        scroll.scroll({
-            top: scroll.scrollHeight,
-            behavior: 'smooth'
-        });
+
+
+        let span = document.createElement('span');
+        span.classList.add('date');
+        span.innerText = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+        let pre = document.createElement('pre');
+        pre.innerText = message;
         
+        let li = document.createElement('li');
+        li.appendChild(span);
+        li.appendChild(pre);
+
+        console_log.appendChild(li);
+
+
+        //hacemos scrool para que se vea el elemento
+        li.scrollIntoView(true);
+    
         // Actualiamos la consola
         console.error = console.debug = console.info = console.log
     }
