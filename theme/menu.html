@@ -4,13 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <title>Menú</title>
-  <link rel="stylesheet" href="css/paneles.css?v0.17" type="text/css"/>
+  <link rel="stylesheet" href="css/paneles.css?v0.18" type="text/css"/>
 </head>
 
 <body>
   <div class="panel derecha font-09">
-    <div class="panel_content">
-      <p class="center font-08">(pulsa sobre cada opción para activarla)</p>
+    <div id="panel_content">
+      <div class="selector">
+        <select id="selector_ejercicios">
+          <option value="1">Ejercicios JS I</option>
+          <option value="2">Ejercicios JS II</option>
+          <option value="3">Ejercicios DOM III</option>
+        </select>
+      </div>
+      <p class="center font-08">&uarr;Seleccione un ejercicio.&uarr;</p>
+      <p class="center font-08">
+        &darr;Pulse sobre cada opción para activarla.&darr;</p>
       <ul>
         <li class="center" onclick="ejecutar_todo()"><h2>Ejecutar todo</h2></li>
       </ul>
@@ -32,5 +41,5 @@
     </div>
   </div>
 </body>
-<script src="js/paneles.js?v0.1"></script>
+<script src="js/paneles.js?v0.18"></script>
 </html>

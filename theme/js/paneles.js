@@ -1,3 +1,72 @@
+/**
+ *  Selector de ejercicios
+ */
+let selector_ejercicios = document.querySelector('.panel.derecha #selector_ejercicios');
+// filtramos si existe (este js se comparte con más iframes a parte de menú)
+if( selector_ejercicios ) {
+    
+    /* Añadimos un evento para actualizar el src cuando cambie */
+    selector_ejercicios.addEventListener("change", function() {
+
+        // Cambiamos el src de iframe_content
+        window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + this.value + '/index.html';
+        
+        //cambiamos la url principal
+        window.top.history.pushState('page2', 'Title', window.top.location.pathname + '?ejercicio=' + this.value);
+    });
+
+
+    
+
+    // Buscamos si se han recibido parámetros get
+    let url_get = window.top.location.search;
+    if( url_get ) {
+
+        // Pasamos los parámetros al menú
+
+        // Creamos un array asociativo con todos los parámetros
+        let url_get_params_array = {};
+        let url_get_params = url_get.split('&');
+
+        for( let line of url_get_params ) {
+            
+            let tmp = line.split('=');
+            if( tmp[0] == 'ejercicio' | tmp[0] == '?ejercicio' ) {
+                window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + tmp[1] + '/index.html';
+                break;
+            }
+        }
+    }
+
+    // Marcamos la opción adecuada
+    select_option();
+}
+
+/**
+ *  Selecciona en el selector de ejercicios el que se esté mostrando
+ */
+function select_option() {
+   
+    // Cogemos la ruta de iframe_content y la cortamos por '/' en un array
+    let content_url = new URL(window.top.document.getElementsByName('iframe_content')[0].src).pathname.split( '/' );
+
+    // Cogemos el penúltimo elemento (el nombre de la carpeta)
+    let folder_url = content_url[(content_url.length-2)];
+    
+    // Activamos el selector según el nombre de carpeta
+    let options = document.querySelectorAll('.panel.derecha #selector_ejercicios option');
+    for( let line of options ) {
+        if( 'ejercicio' + line.value == folder_url ) {
+            line.selected = true;
+            break;
+        }
+    }
+}
+
+
+/**
+ * Ejecuta todas las opciones del ejercicio secuencialmente
+ */
 function ejecutar_todo() {
     // Cogemos todos los elementos del panel
     let funciones = document.querySelectorAll('.panel.derecha li');
