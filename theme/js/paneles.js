@@ -1,5 +1,9 @@
 var ejercicio = 1;
 
+/**
+ * 
+ * Obtener asíncronamente una URL
+ */
 var getJSON = function (url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -160,6 +164,16 @@ function select_option() {
 }
 
 
+
+/**
+ * Evento para limpiar la consola 
+ */
+let console_clean = document.querySelector('.panel.abajo .panel_limpiar');
+if( console_clean ) {
+    document.addEventListener('click', ()=> {
+        let console_log = window.top.frames['iframe_console'].window.document.querySelector('#console_log').innerHTML = '';
+    });
+}
 
 
 /**
