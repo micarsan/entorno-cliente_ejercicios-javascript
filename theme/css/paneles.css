@@ -90,6 +90,11 @@ h3 { text-align: center; }
 
 .panel.derecha #panel_content ul li {
     padding: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select:none;
 }
 
 .panel.derecha #panel_content .selector {

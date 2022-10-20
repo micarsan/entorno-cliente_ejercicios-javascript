@@ -1,0 +1,44 @@
+{
+"enunciados":[
+    {
+        "title"    : "Seleccionaremos el body y con el uso de los navegadores iremos asignando el atributo id a los distintos divs. Los primeros tres los designaremos como divIzquierdo, divCentro y divDerecho, el último como footer.",
+        "function" : "add_id"
+    },
+    {
+        "title"    : "Continuaremos aplicando estilos en los distintos divs aplicando color de fondo y además un márgen píxeles al footer.",
+        "function" : "div_style"
+    },
+    {
+        "title"    : "Aplicaremos anchura, unos 30 viewPort.",
+        "function" : "div_width"
+    },
+    {
+        "title"    : "Los desplegaremos en línea, debemos aprovechar la clase para ello junto a un borde de 2 píxeles sólido de algún color. Pista: values().",
+        "function" : "desplegar"
+    },
+    {
+        "title"    : "Aplicaremos una altura de 75 viewPort units al divContenedor y usaremos flex.",
+        "function" : "div_flex"
+    },
+    {
+        "title"    : "Aplicaremos a los elementos contenidos en el divContenedor una altura del 80% y al footer un 5%.",
+        "function" : "div_height"
+    },
+    {
+        "title"    : "Crearemos un nuevo elemento divNav con los siguientes estilos: height = '5%', width = '80%' y margin = '10%';",
+        "function" : "div_nav"
+    },
+    {
+        "title"    : "Crearemos una lista desordenada e iremos creando elementos li y añadiéndolos a nuestra lista, 4 enlaces.",
+        "function" : "create_nav_elements"
+    },
+    {
+        "title"    : "Iteraremos e iremos añadiendo texto con el número del enlace hasta terminar y añadirlo como primer elemento del body. Pista: insertBefore().",
+        "function" : "nav_to_body"
+    },
+    {
+        "title"    : "Clonaremos el footer y lo añadiremos al final del div eliminando el anterior.",
+        "function" : "footer_clone"
+    }
+]
+}
