@@ -1,0 +1,52 @@
+{
+"enunciados":[
+    {
+        "title"    : "Ejercicios básicos"
+    },
+    {
+        "title"    : "Cambio de color de fondo de la página a tono azul aguamarina.",
+        "function" : "background_body_aguamarina"
+    },
+    {
+        "title"    : "La fuente de la letra del body deberá ser Arial.",
+        "function" : "font_body_arial"
+    },
+    {
+        "title"    : "Color rojo de las letras en el body.",
+        "function" : "color_body_red"
+    },
+    {
+        "title"    : "Los bordes deben de tener 3px solid con color rojo.",
+        "function" : "border_body_3px"
+    },
+    {
+        "title"    : "Una función qué haga cambiar el fondo de color cada 30 segundos. (Pista setInterval).",
+        "function" : "background_body_30segundos"
+    },
+    {
+        "title"    : "Estructuras de los nodos"
+    },
+    {
+        "title"    : "Utiliza el primer elemento del body y cambia el color de la letra a azul.",
+        "function" : "body_firstChild_color"
+    },
+    {
+        "title"    : "Entrar en el elemento lista y recorrer los objetos mostrando cada elemento iterando.",
+        "function" : "list_iterate",
+        "time"     : "2500"
+    },
+    {
+        "title"    : "Añadir a la lista elementos 4, 5 y 6.",
+        "function" : "list_add_elements",
+        "time"     : "2000"
+    },
+    {
+        "title"    : "Seleccionando el Id de la tabla, iterar y cambiar los campos de los nombres por un número random de 0 a 100.",
+        "function" : "table_title_random"
+    },
+    {
+        "title"    : "Utilizar QuerySelector para elegir la clase de los enlaces y cambiar el fondo a verde.",
+        "function" : "querySelector_link_bgGreen"
+    }
+]
+}
