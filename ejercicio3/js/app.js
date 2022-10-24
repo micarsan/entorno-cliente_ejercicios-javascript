@@ -28,8 +28,8 @@ function div_style() {
 function div_width() {
     let log = '- Enunciado: Aplicaremos anchura, unos 30 viewPort.';
 
-    let divs = document.querySelectorAll('.divContenido');
-    for( let div of divs ) {
+    let divs_contenido = document.querySelectorAll('.divContenido');
+    for( let div of divs_contenido ) {
         log += '\n- Ancho de 30vw aplicado a div#' + div.getAttribute('id');
         div.style.width = '30vw';
     }
@@ -41,47 +41,43 @@ function div_width() {
 function desplegar() {
     log = '- Enunciado: Los desplegaremos en línea, debemos aprovechar la clase para ello junto a un borde de 2 píxeles sólido de algún color. Pista: values().';
 
-    // Creamos la etiqueta style si no existe en el head
-    if( !document.getElementsByTagName('style')[0] ) {
-        document.head.appendChild( document.createElement('style') );
-        log += '\n- No existe la etiqueta style en head. Creada';
-    }
-    
-    //comprobamos si ya están los estilos
-    if( getComputedStyle( document.querySelector('.divContenido') ).display == 'inline-block' ) {
-        log += '\n- Ya están los estilos creados! No se hace nada';
-    } else {
-        log += '\n- Añadiendo estilos para div.divContenido';
-        document.querySelector('style').textContent += '.divContenido { display: inline-block; border: 2px solid #666; }';
+    let divs_contenido = document.querySelectorAll('.divContenido');
+    for( let div of divs_contenido ) {
+        div.style.display = 'inline-block';
+        div.style.border = '2px solid #666';
+        log += '\n- Estilos aplicados a div#' + div.getAttribute('id');
     }
 
-    console.log(log);    
+    console.log(log);
 }
 
 
 function div_flex() {
     log = '- Enunciado: Aplicaremos una altura de 75 viewPort units al divContenedor y usaremos flex.';
 
-    //comprobamos si ya están los estilos
-    if( getComputedStyle( document.querySelector('#contenedor') ).display == 'flex' ) {
-        log += '\n- Ya están los estilos creados! No se hace nada';
-    } else {
-        log += '\n- Añadiendo 75vw y flex para div#contenedor';
-        document.querySelector('style').textContent += '#contenedor { height: 75vw; display: flex; }';
-    }
-
+    let div_contenedor = document.getElementById('contenedor')
+    div_contenedor.style.height = '75vw';
+    div_contenedor.style.display = 'flex';
+    
     console.log(log);    
-
 }
 
 
 function div_height() {
     log = '- Enunciado: Aplicaremos a los elementos contenidos en el divContenedor una altura del 80% y al footer un 5%.';
 
-    log += '\n- Añadiendo 80% de altura a los hijos de #contenedor y 5% de altura a footer';
-    document.querySelector('style').textContent += '#contenedor>* { height: 80%; } #footer { height: 5%; }';
+    let contenedor_childs = document.querySelectorAll('#contenedor>*');
+    for( let element of contenedor_childs ) {
+        log += '\n- Añadiendo altura de 80% a div#' + element.getAttribute('id');
+        element.style.height = '80%';
+    }
+    
+    log += '\n- Modificando a 5% de altura el footer';
+    document.querySelector('#footer').style.height = '5%';
+    /* podríamos coger el último elemento de contenedor_childs pero este código es más usable porque en caso
+    de que en el html se añadiese un nuevo div después de footer, tendríamos que actualizar este código */
 
-    console.log(log);   
+    console.log(log);
 }
 
 
@@ -103,8 +99,14 @@ function create_nav_elements() {
     ul = document.createElement('ul');
     
     for( let i=0 ; i<4 ; i++ ) {
-        log += '- Creando li:' + i + ' y añadiendolo a ul';
+        
+        log += '\n- Creando li:' + i;
         let li = document.createElement('li');
+        
+        log += '; Creando enlace y añadiendolo a li:' + i;
+        li.appendChild( document.createElement('a') );
+
+        log += '; Añadiendo li:' + i + ' a ul';
         ul.appendChild(li);
     }
 
@@ -113,20 +115,18 @@ function create_nav_elements() {
 
 
 function nav_to_body() {
-    log = 'Iteraremos e iremos añadiendo texto con el número del enlace hasta terminar y añadirlo como primer elemento del body. Pista: insertBefore().';
+    log = '- Enunciado: Iteraremos e iremos añadiendo texto con el número del enlace hasta terminar y añadirlo como primer elemento del body. Pista: insertBefore().';
 
     let lis = ul.childNodes;
     for( let i=0 ; i<lis.length ; i++ ) {
-        log += '- Creando enlace' + i + ' y añadiendolo a li:' + i;
-        let a = document.createElement('a');
-        a.innerText = 'enlace' + i;
-        lis[i].appendChild(a);
+        log += '\n- Añadiendo el texto "enlace' + i + '" al enlace (a) del elemento li:' + i;
+        lis[i].childNodes[0].innerText = 'enlace' + i;
     }
 
-    log += '- Añadiendo la lista desordenada a nav';
+    log += '\n- Añadiendo la lista desordenada a nav';
     nav.appendChild(ul);
 
-    log += '- Añadiendo nav al principio de body';
+    log += '\n- Añadiendo nav al principio de body';
     document.body.insertBefore(nav, document.body.children[0]);
 
     console.log(log);
@@ -146,7 +146,6 @@ function footer_clone() {
 
     console.log(log);
 }
-
 
 
 
