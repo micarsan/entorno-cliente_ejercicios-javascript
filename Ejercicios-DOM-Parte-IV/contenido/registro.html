@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mi segunda página.</title>
+    <link rel="stylesheet" href="../css/estilo.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+</head>
+
+<body>
+    <nav id="nav">
+        <ul>
+            <li>
+                <a href="../index.html">Página principal</a>
+            </li>
+        </ul>
+
+
+    </nav>
+    <h1>Registro</h1>
+    <div id="contenedor">
+
+
+        <div id="divCentro" class="divContenido">
+            <form name="formulario" action="#" method="post" id="form">
+                <ul id="formUl">
+                    <fieldset>
+                        <legend>Personal Information:</legend>
+                        <li>
+                            <label for="userid">User id:</label>
+                        </li>
+                        <li>
+                            <input type="number" name="userid" size="12">
+                        </li>
+                        <li>
+                            <label for="passid">Password:</label>
+                        </li>
+                        <li>
+                            <input type="password" name="passid" size="12">
+                        </li>
+                        <li>
+                            <label for="username">Name:</label>
+                        </li>
+                        <li>
+                            <input type="text" name="username" size="50">
+                        </li>
+                        <li>
+                            <label for="address">Address:</label>
+                        </li>
+                        <li>
+                            <input type="text" name="address" size="50">
+                        </li>
+                        <li>
+                            <label for="country">Country:</label>
+                        </li>
+                        <li>
+                            <select name="country">
+                                <option selected value="Default">
+                                    (Please select a country)
+                                </option>
+                                <option value="PO">Portugal</option>
+                                <option value="SP">Spain</option>
+                                <option value="FR">France</option>
+                                <option value="GE">Germany</option>
+                                <option value="UK">U.K.</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="zip">ZIP Code:</label>
+                        </li>
+                        <li>
+                            <input type="number" name="zip">
+                        </li>
+                        <li>
+                            <label for="email">Email:</label>
+                        </li>
+                        <li>
+                            <input type="text" name="email" size="50">
+                        </li>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Other details</legend>
+
+
+                        <li>
+                            <label id="preferences">Nestquik or Colacao:</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="nest" value="Nestquik">
+                            <span>Nestquik</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="cola" value="Colacao">
+                            <span>Colacao</span>
+                        </li>
+                        <li>
+                            <label>Streaming platforms:</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="net" value="net" checked>
+                            <span>Netflix</span>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="hbo" value="hbo">
+                            <span>HBO Max</span>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="disney" value="disney">
+                            <span>disney+</span>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="amazon" value="amazon">
+                            <span>Prime Video</span>
+                        </li>
+                        <li>
+                            <label for="desc">About:</label>
+                        </li>
+                        <li>
+                            <textarea name="desc" id="desc"></textarea>
+                        </li>
+
+
+                    </fieldset>
+                    <li>
+                        <input type="submit" name="submit" value="Submit">
+                    </li>
+                </ul>
+            </form>
+
+
+        </div>
+        <div id="divDerecho" class="divContenido">
+            <ul id="formTest">
+                <fieldset>
+                    <li>
+                        <p name="user-id">test</p>
+                    </li>
+                    <li>
+                        <p name="user-password">test</p>
+                    </li>
+                    <li>
+                        <p name="user-name">test</p>
+                    </li>
+                    <li>
+                        <p name="user-address">test</p>
+                    </li>
+                    <li>
+                        <p name="user-country">test</p>
+                    </li>
+                    <li>
+                        <p name="user-zip>">test</p>
+                    </li>
+                    <li>
+                        <p name="user-email">test</p>
+                    </li>
+               
+                </fieldset>
+                <fieldset>
+                  
+                   
+                    <li>
+                        <p name="user-preferences">test</p>
+                    </li>
+                    <li>
+                        <p name="user-streaming">test</p>
+                    </li>
+                    <li>
+                        <p name="user-about">test</p>
+                    </li>
+
+
+                </fieldset>
+                <li>
+                   <p>test</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="footer">Footer</div>
+
+    <script src="../js/appRegistro.js"></script>
+</body>
+
+</html>

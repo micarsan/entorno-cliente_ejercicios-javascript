@@ -30,17 +30,25 @@ if (selector_ejercicios) {
     /* Añadimos un evento para actualizar el src cuando cambie */
     selector_ejercicios.addEventListener("change", function () {
 
-        // Cambiamos el src de iframe_content
-        window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + this.value + '/index.html';
+        // Comprobamos si existe el atributo data-url en el option y si es así, abrimos la url en el frame parent (pantalla completa)
+        let data_url = this.options[this.selectedIndex].getAttribute('data-url');
 
-        //Actualizamos la variable global ejercicio
-        ejercicio = this.value;
+        if( data_url ) {
+            window.top.location.href = '../' + data_url;
+        
+        } else {
+            // Cambiamos el src de iframe_content
+            window.top.document.getElementsByName('iframe_content')[0].src = 'ejercicio' + this.value + '/index.html';
 
-        //cambiamos la url principal
-        window.top.history.pushState('page2', 'Title', window.top.location.pathname + '?ejercicio=' + this.value);
+            //Actualizamos la variable global ejercicio
+            ejercicio = this.value;
 
-        // Creamos el menú
-        create_menu();
+            //cambiamos la url principal
+            window.top.history.pushState('page2', 'Title', window.top.location.pathname + '?ejercicio=' + this.value);
+
+            // Creamos el menú
+            create_menu();
+        }
     });
 
 
