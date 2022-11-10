@@ -80,8 +80,8 @@ for( let i=0 ; i < fieldsets.length-1 ; i++ ) {
                         break;
 
                     case 'passid':
-                        if( element.value.length != 8 ) {
-                            show_message( element, 'error', 'Longitud incorrecta (tiene que tener 8 caracteres)' );
+                        if( element.value.length < 8 ) {
+                            show_message( element, 'error', 'Longitud incorrecta (tiene que tener más de 8 caracteres)' );
                         } else if ( !element.value.match(/[a-z]/g) ) {
                             show_message( element, 'error', 'La contraseña tiene que tener al menos una letra minúscula' );
                         } else if ( !element.value.match(/[A-Z]/g) ) {
